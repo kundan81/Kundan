@@ -1,0 +1,89 @@
+<?php
+session_start(); 
+include("header.php"); 
+include("config.php");
+
+$result = mysql_query("SELECT * FROM trp_lecturer WHERE lecturer_id='$_SESSION[userid]'");
+ while($row1 = mysql_fetch_array($result))
+  {
+		$lecid = $row1[lecturer_id];
+		$lecname = $row1[lecturer_name];	
+		$address = $row1[address]; 	
+		$contno = $row1[contactno];
+  }
+  $result12 = mysql_query("SELECT * FROM trp_lecturer");
+ while($row2 = mysql_fetch_array($result12))
+  {
+	  $cbane =	  $row2[lecturer_name];
+  }
+?>
+<section id="page">
+<header id="pageheader" class="normalheader">
+<h2 class="sitedescription">
+</h2>
+</header>
+
+<section id="contents">
+
+<article class="post">
+  <header class="postheader">
+  <h2>Lecture Profile</h2>
+  </header>
+  <section class="entry">
+  <font size="3">
+  <form action="" method="post" class="form">
+   <table width="501" height="228" border="1">
+     <tr>
+       <td width="198" height="34"><strong>&nbsp; Lecture ID :</strong></td>
+       <td width="287">&nbsp; <?php echo $lecid ;?></td>
+     </tr>
+     <tr>
+       <td height="42"><strong>&nbsp;  Name :</strong></td>
+       <td>&nbsp;<?php echo $lecname ;?></td>
+     </tr>
+     <tr>
+       <td height="64"><strong>&nbsp; Address : </strong></td>
+       <td>&nbsp; <?php echo $address ;?></td>
+     </tr>
+     <tr>
+       <td height="39"><strong>&nbsp; Contact No. : </strong></td>
+       <td>&nbsp; <?php echo $contno;?></td>
+     </tr>
+     <tr>
+       <td height="35"><strong>&nbsp; Course :</strong></td>
+       <td>&nbsp; <?php echo $cbane ;?></td>
+     </tr>
+   </table>
+     </font>
+   <p class="textfield">&nbsp;</p>
+<div class="clear"></div>
+</form>
+  </section>
+</article>
+
+<article class="post">
+  <header class="postheader"></header>
+  <section class="entry">
+    <form action="" method="post" class="form">
+<div class="clear"></div>
+</form>
+<div class="clear"></div>
+</section>
+</article>
+
+
+
+</section>
+
+
+<?php 
+if($_SESSION["type"]=="admin")
+	{
+	include("adminmenu.php");
+	}
+	else
+	{	
+	include("lecturemenu.php");
+	}
+
+include("footer.php"); ?>
